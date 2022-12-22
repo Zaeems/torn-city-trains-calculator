@@ -97,33 +97,33 @@
     </table>
   </body>
   <script>
-    var inputElements = document.querySelectorAll('input');
+    var inputElements = document.querySelectorAll('input[type="tel"]');
     inputElements.forEach(function(inputElement) {
       new AutoNumeric(inputElement, {decimalPlaces: 0});
     });
 
     function calculate() {
     // Take values from the form
-    let man = Number(document.getElementById("current-man").value);
-    let end = Number(document.getElementById("current-end").value);
-    let intel = Number(document.getElementById("current-int").value);
-    let targetMan = Number(document.getElementById("target-man").value);
-    let targetEnd = Number(document.getElementById("target-end").value);
-    let targetInt = Number(document.getElementById("target-int").value);
-
+    let man = Number(document.getElementById("current-man").value.replace(/\D/g, ''));
+    let end = Number(document.getElementById("current-end").value.replace(/\D/g, ''));
+    let intel = Number(document.getElementById("current-int").value.replace(/\D/g, ''));
+    let targetMan = Number(document.getElementById("target-man").value.replace(/\D/g, ''));
+    let targetEnd = Number(document.getElementById("target-end").value.replace(/\D/g, ''));
+    let targetInt = Number(document.getElementById("target-int").value.replace(/\D/g, ''));
+    
     // Check if current stats are already greater than or equal to target stats
     if (man >= targetMan && end >= targetEnd && intel >= targetInt) {
       return;
     }
-
+console.log('here');
     // Take growth values dependant on job
-    let manGrowth = Number(document.getElementById("man-gain").value);
-    let endGrowth = Number(document.getElementById("end-gain").value);
-    let intGrowth = Number(document.getElementById("int-gain").value);
-    let trainsPerDay = Number(document.getElementById("trains-per-day").value);
+    let manGrowth = Number(document.getElementById("man-gain").value.replace(/\D/g, ''));
+    let endGrowth = Number(document.getElementById("end-gain").value.replace(/\D/g, ''));
+    let intGrowth = Number(document.getElementById("int-gain").value.replace(/\D/g, ''));
+    let trainsPerDay = Number(document.getElementById("trains-per-day").value.replace(/\D/g, ''));
 
     // Take cost per train
-    let costPerTrain = Number(document.getElementById("cost-per-train").value);
+    let costPerTrain = Number(document.getElementById("cost-per-train").value.replace(/\D/g, ''));
 
     // Initialize variables to store the current values of Man, End, and Intel
     let iterations = 0;
