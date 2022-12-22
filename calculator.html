@@ -24,18 +24,18 @@
       			  <!-- Use Bootstrap form-control class for input elements -->
 			      <label for="current-man">Current Man:</label>
 			      <input type="number" class="form-control bg-dark text-white" id="current-man" name="current-man">
-			      <label for="target-man">Target Man:</label>
-			      <input type="number" class="form-control bg-dark text-white" id="target-man" name="target-man">
+				  <label for="current-int">Current Int:</label>
+			      <input type="number" class="form-control bg-dark text-white" id="current-int" name="current-int">
 			      <label for="current-end">Current End:</label>
 			      <input type="number" class="form-control bg-dark text-white" id="current-end" name="current-end">
    				</div>
     			<div class="col-4">
-			      <label for="target-end">Target End:</label>
-			      <input type="number" class="form-control bg-dark text-white" id="target-end" name="target-end">
-			      <label for="current-int">Current Int:</label>
-			      <input type="number" class="form-control bg-dark text-white" id="current-int" name="current-int">
+				  <label for="target-man">Target Man:</label>
+			      <input type="number" class="form-control bg-dark text-white" id="target-man" name="target-man">
 			      <label for="target-int">Target Int:</label>
 			      <input type="number" class="form-control bg-dark text-white" id="target-int" name="target-int">
+				  <label for="target-end">Target End:</label>
+			      <input type="number" class="form-control bg-dark text-white" id="target-end" name="target-end">
     			</div>
   			</div>
 		</div>
@@ -46,12 +46,12 @@
           <input type="number" class="form-control bg-dark text-white" id="man-gain" name="man-gain">
         </div>
         <div class="form-group col-2">
-          <label for="end-gain">End:</label>
-          <input type="number" class="form-control bg-dark text-white" id="end-gain" name="end-gain">
-        </div>
-        <div class="form-group col-2">
           <label for="int-gain">Int:</label>
           <input type="number" class="form-control bg-dark text-white" id="int-gain" name="int-gain">
+        </div>
+		<div class="form-group col-2">
+          <label for="end-gain">End:</label>
+          <input type="number" class="form-control bg-dark text-white" id="end-gain" name="end-gain">
         </div>
         <h2>Trains per Day</h2>
         <div class="form-group col-2">
@@ -77,18 +77,18 @@
         <td id="man-secondary"></td>
         <td id="man-total"></td>
       </tr>
-     <tr>
-		<th>End</th>
-		<td id="end-primary"></td>
-        <td id="end-secondary"></td>
-        <td id="end-total"></td>
-	 </tr>
-	 <tr>
+	  <tr>
 		<th>Int</th>
 		<td id="int-primary"></td>
         <td id="int-secondary"></td>
         <td id="int-total"></td>
-	 </tr>
+	  </tr>
+      <tr>
+		<th>End</th>
+		<td id="end-primary"></td>
+        <td id="end-secondary"></td>
+        <td id="end-total"></td>
+	   </tr>
 	</table>
 </body>
 
