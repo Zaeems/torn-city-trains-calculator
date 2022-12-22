@@ -1,72 +1,71 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>Torn Work Stat Training Calculator</title>
-    <!-- Include Bootstrap CSS file -->
-    <link rel="stylesheet" href="css/bootstrap.min.css">
-    <style>
-	@media (prefers-color-scheme: dark) {
-    	--body-bg: #000;
-    	--body-color: #fff;
-	}
-    </style>
-  </head>
-  <body class="bg-dark text-white">
-    <!-- Use Bootstrap container class to wrap form -->
-    <div class="container">
-      <h1>Trains Calculator</h1>
-      <form onsubmit="calculate(); return false;">
-        <!-- Use Bootstrap form-group class for form elements -->
-        <div class="form-group">
-  			<h2>Current Stats</h2>
-  			<div class="row">
-   			 	<div class="col-4">
-      			  <!-- Use Bootstrap form-control class for input elements -->
-			      <label for="current-man">Current Man:</label>
-			      <input type="number" class="form-control bg-dark text-white" id="current-man" name="current-man">
-				  <label for="current-int">Current Int:</label>
-			      <input type="number" class="form-control bg-dark text-white" id="current-int" name="current-int">
-			      <label for="current-end">Current End:</label>
-			      <input type="number" class="form-control bg-dark text-white" id="current-end" name="current-end">
-   				</div>
-    			<div class="col-4">
-				  <label for="target-man">Target Man:</label>
-			      <input type="number" class="form-control bg-dark text-white" id="target-man" name="target-man">
-			      <label for="target-int">Target Int:</label>
-			      <input type="number" class="form-control bg-dark text-white" id="target-int" name="target-int">
-				  <label for="target-end">Target End:</label>
-			      <input type="number" class="form-control bg-dark text-white" id="target-end" name="target-end">
-    			</div>
-  			</div>
-		</div>
-
-        <h2>Daily Stat Gains</h2>
-        <div class="form-group col-2">
-          <label for="man-gain">Man:</label>
-          <input type="number" class="form-control bg-dark text-white" id="man-gain" name="man-gain">
+<head>
+ <title>Torn Work Stat Training Calculator</title>
+ <!-- Include Bootstrap CSS file -->
+ <link rel="stylesheet" href="css/bootstrap.min.css">
+ <script src="https://cdn.jsdelivr.net/npm/autonumeric@4.1.0"></script>
+</head>
+<body class="bg-dark text-white">
+  <!-- Use Bootstrap container class to wrap form -->
+  <div class="container">
+    <h1>Trains Calculator</h1>
+    <form onsubmit="calculate(); return false;">
+      <!-- Use Bootstrap form-group class for form elements -->
+      <div class="form-group">
+        <h2>Current Stats</h2>
+        <div class="row">
+          <div class="col-sm-6 col-md-4">
+            <!-- Use Bootstrap form-control class for input elements -->
+            <label for="current-man">Current Man:</label>
+            <input type="tel" class="form-control bg-dark text-white" id="current-man" name="current-man">
+            <label for="current-int">Current Int:</label>
+            <input type="tel" class="form-control bg-dark text-white" id="current-int" name="current-int">
+            <label for="current-end">Current End:</label>
+            <input type="tel" class="form-control bg-dark text-white" id="current-end" name="current-end">
+          </div>
+          <div class="col-sm-6 col-md-4">
+            <label for="target-man">Target Man:</label>
+            <input type="tel" class="form-control bg-dark text-white" id="target-man" name="target-man">
+            <label for="target-int">Target Int:</label>
+            <input type="tel" class="form-control bg-dark text-white" id="target-int" name="target-int">
+            <label for="target-end">Target End:</label>
+            <input type="tel" class="form-control bg-dark text-white" id="target-end" name="target-end">
+          </div>
         </div>
-        <div class="form-group col-2">
-          <label for="int-gain">Int:</label>
-          <input type="number" class="form-control bg-dark text-white" id="int-gain" name="int-gain">
-        </div>
-		<div class="form-group col-2">
-          <label for="end-gain">End:</label>
-          <input type="number" class="form-control bg-dark text-white" id="end-gain" name="end-gain">
-        </div>
-        <h2>Trains per Day</h2>
-        <div class="form-group col-2">
-          <label for="trains-per-day">Trains per Day:</label>
-          <input type="number" class="form-control bg-dark text-white" id="trains-per-day" name="trains-per-day">
-      	<br>
-      	<input type="submit" class="btn border btn-lg text-white" value="Submit">
       </div>
-	</form> 
-	<br/>
+      <h2>Daily Stat Gains</h2>
+      <div class="form-group col-sm-4 col-md-2">
+        <label for="man-gain">Man:</label>
+        <input type="tel" class="form-control bg-dark text-white" id="man-gain" name="man-gain">
+      </div>
+      <div class="form-group col-sm-4 col-md-2">
+        <label for="int-gain">Int:</label>
+        <input type="tel" class="form-control bg-dark text-white" id="int-gain" name="int-gain">
+      </div>
+      <div class="form-group col-sm-4 col-md-2">
+        <label for="end-gain">End:</label>
+        <input type="tel" class="form-control bg-dark text-white" id="end-gain" name="end-gain">
+      </div>
+      <h2>Trains per Day</h2>
+      <div class="row">
+        <div class="form-group col-sm-4 col-md-2">
+          <label for="trains-per-day">Trains per day:</label>
+          <input type="tel" class="form-control bg-dark text-white" id="trains-per-day" name="trains-per-day">
+        </div>
+        <div class="form-group col-sm-4 col-md-2">
+          <label for="cost-per-train">Cost per train:</label>
+          <input type="tel" class="form-control bg-dark text-white" id="cost-per-train" name="trains-per-day">
+          <br/>
+        </div>
+      </div>
+      <input type="submit" class="btn border btn-lg text-white" value="Submit">
+    </form>
     <h2>Output</h2>
-    <p id="total-trains">Total Trains: 0</p>
+    <p id="total-trains">Total Trains: 0 - Total Cost: $0 ($0 per train)</p>
     <table class="table text-white">
       <tr>
-        <th></th>
+        <th>Stats</th>
         <th>Primary Trains</th>
         <th>Secondary Trains</th>
         <th>Total Stats</th>
@@ -77,23 +76,25 @@
         <td id="man-secondary"></td>
         <td id="man-total"></td>
       </tr>
-	  <tr>
-		<th>Int</th>
-		<td id="int-primary"></td>
+      <tr>
+        <th>Int</th>
+        <td id="int-primary"></td>
         <td id="int-secondary"></td>
         <td id="int-total"></td>
-	  </tr>
+      </tr>
       <tr>
-		<th>End</th>
-		<td id="end-primary"></td>
+        <th>End</th>
+        <td id="end-primary"></td>
         <td id="end-secondary"></td>
         <td id="end-total"></td>
-	   </tr>
-	</table>
-</body>
-
-<script>
-  function calculate() {
+      </tr>
+    </table>
+  </body>
+  <script>
+    new AutoNumeric('input', {decimalPlaces: 0}) ;
+  </script>
+  <script>
+    function calculate() {
     // Take values from the form
     let man = Number(document.getElementById("current-man").value);
     let end = Number(document.getElementById("current-end").value);
@@ -113,97 +114,111 @@
     let intGrowth = Number(document.getElementById("int-gain").value);
     let trainsPerDay = Number(document.getElementById("trains-per-day").value);
 
+    // Take cost per train
+    let costPerTrain = Number(document.getElementById("cost-per-train").value);
+
     // Initialize variables to store the current values of Man, End, and Intel
     let iterations = 0;
     let currentMan = man;
     let currentEnd = end;
     let currentIntel = intel;
+    
     let manPrimary = 0;
     let endPrimary = 0;
     let intelPrimary = 0;
+
     let manSecondary = 0;
     let endSecondary = 0;
     let intelSecondary = 0;
+
     let days = 0;
 
     // Keep looping until all three variables have reached their target values
     while (currentMan < targetMan || currentEnd < targetEnd || currentIntel < targetInt) {
-      // Calculate the difference between the current value and the target value for each variable
-      let manDiff = targetMan - currentMan;
-      let endDiff = targetEnd - currentEnd;
-      let intelDiff = targetInt - currentIntel;
+    // Calculate the difference between the current value and the target value for each variable
+    let manDiff = targetMan - currentMan;
+    let endDiff = targetEnd - currentEnd;
+    let intelDiff = targetInt - currentIntel;
 
-      if(manDiff >= endDiff && manDiff >= intelDiff) {
-      	// Set Man as the primary input
-      	currentMan += 50;
-      	manPrimary++;
+    if(manDiff >= endDiff && manDiff >= intelDiff) {
+    // Set Man as the primary input
+    currentMan += 50;
+    manPrimary++;
 
-      	// Determine which variable to set as the secondary input
-        if (endDiff >= intelDiff) {
-            currentEnd += 25;
-            endSecondary++;
-        } else {
-            currentIntel += 25;
-            intelSecondary++;
-        }
-      } else if(endDiff >= manDiff && endDiff >= intelDiff) {
-        // Set End as the primary input
-        currentEnd += 50;
-        endPrimary++;
-
-        // Determine which variable to set as the secondary input
-        if (manDiff >= intelDiff) {
-            currentEnd += 25;
-            endSecondary++;
-        } else {
-            currentIntel += 25;
-            intelSecondary++;
-        } 
+    // Determine which variable to set as the secondary input
+      if (endDiff >= intelDiff) {
+        currentEnd += 25;
+        endSecondary++;
+      } else {
+        currentIntel += 25;
+        intelSecondary++;
       }
-      else {
-		// Set Int as the primary input
-       	currentIntel += 50;
-       	intelPrimary++;
-       	// Determine which variable to set as the secondary input
-       	if (manDiff >= endDiff) {
-           currentMan += 25;
-           manSecondary++;
-       	} else {
-           currentEnd += 25;
-           endSecondary++;
-       	}
-     }
+    } else if(endDiff >= manDiff && endDiff >= intelDiff) {
+      // Set End as the primary input
+      currentEnd += 50;
+      endPrimary++;
+      // Determine which variable to set as the secondary input
+        if (manDiff >= intelDiff) {
+        currentEnd += 25;
+        endSecondary++;
+      } else {
+        currentIntel += 25;
+        intelSecondary++;
+      } 
+    } else {
+      // Set Int as the primary input
+      currentIntel += 50;
+      intelPrimary++;
+      // Determine which variable to set as the secondary input
+      if (manDiff >= endDiff) {
+        currentMan += 25;
+        manSecondary++;
+      } else {
+        currentEnd += 25;
+        endSecondary++;
+      }
+    }
 
-     // Increase the days counter and reset the number of trains for the day
-     iterations++;
-     days++;
-     if(days == trainsPerDay) {
-     	currentMan += manGrowth;
-     	currentEnd += endGrowth;
-     	currentIntel += intGrowth;
-     	days = 0;
-     }
-   }
+    // Increase the days counter and reset the number of trains for the day
+    iterations++;
+    days++;
+    if(days == trainsPerDay) {
+      currentMan += manGrowth;
+      currentEnd += endGrowth;
+      currentIntel += intGrowth;
+      days = 0;
+    }
+  }
 
-   // Calculate the total number of primary and secondary trains
-   let totalManPrimary = manPrimary;
-   let totalEndPrimary = endPrimary;
-   let totalIntelPrimary = intelPrimary;
-   let totalManSecondary = manSecondary;
-   let totalEndSecondary = endSecondary;
-   let totalIntelSecondary = intelSecondary;
-   let totalTrains = manPrimary + endPrimary + intelPrimary;
+  // Calculate the total number of primary and secondary trains
+  let totalManPrimary = manPrimary;
+  let totalEndPrimary = endPrimary;
+  let totalIntelPrimary = intelPrimary;
 
-   // Print the results to the form
-   document.getElementById("man-primary").innerHTML = totalManPrimary;
-   document.getElementById("end-primary").innerHTML = totalEndPrimary;
-   document.getElementById("int-primary").innerHTML = totalIntelPrimary;
-   document.getElementById("man-secondary").innerHTML = totalManSecondary;
-   document.getElementById("end-secondary").innerHTML = totalEndSecondary;
-   document.getElementById("int-secondary").innerHTML = totalIntelSecondary;
-   document.getElementById("man-total").innerHTML = currentMan;
-   document.getElementById("end-total").innerHTML = currentEnd;
-   document.getElementById("int-total").innerHTML = currentIntel;
-   document.getElementById("total-trains").innerHTML = "Total Trains: " + totalTrains;
- }
+  let totalManSecondary = manSecondary;
+  let totalEndSecondary = endSecondary;
+  let totalIntelSecondary = intelSecondary;
+
+  let totalTrains = manPrimary + endPrimary + intelPrimary;
+  let totalCost = costPerTrain * totalTrains;
+
+  function numberWithCommas(x) {
+    return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+  }
+
+  // Print the results to the form
+  document.getElementById("man-primary").innerHTML = numberWithCommas(totalManPrimary);
+  document.getElementById("end-primary").innerHTML = numberWithCommas(totalEndPrimary);
+  document.getElementById("int-primary").innerHTML = numberWithCommas(totalIntelPrimary);
+  document.getElementById("man-secondary").innerHTML = numberWithCommas(totalManSecondary);
+  document.getElementById("end-secondary").innerHTML = numberWithCommas(totalEndSecondary);
+  document.getElementById("int-secondary").innerHTML = numberWithCommas(totalIntelSecondary);
+  document.getElementById("man-total").innerHTML = numberWithCommas(currentMan);
+  document.getElementById("end-total").innerHTML = numberWithCommas(currentEnd);
+  document.getElementById("int-total").innerHTML = numberWithCommas(currentIntel);
+  document.getElementById("total-trains").innerHTML = "Total Trains: " + numberWithCommas(totalTrains) + " - Total Cost: $" + numberWithCommas(totalCost) + " ($" + numberWithCommas(costPerTrain) + " per train)"
+}
 </script>
+</div>
+</body>
+</html>
