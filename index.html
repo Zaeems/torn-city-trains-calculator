@@ -110,7 +110,7 @@
     let targetMan = Number(document.getElementById("target-man").value.replace(/\D/g, ''));
     let targetEnd = Number(document.getElementById("target-end").value.replace(/\D/g, ''));
     let targetInt = Number(document.getElementById("target-int").value.replace(/\D/g, ''));
-    
+
     // Check if current stats are already greater than or equal to target stats
     if (man >= targetMan && end >= targetEnd && intel >= targetInt) {
       return;
@@ -167,8 +167,8 @@ console.log('here');
       endPrimary++;
       // Determine which variable to set as the secondary input
         if (manDiff >= intelDiff) {
-        currentEnd += 25;
-        endSecondary++;
+        currentMan += 25;
+        manSecondary++;
       } else {
         currentIntel += 25;
         intelSecondary++;
