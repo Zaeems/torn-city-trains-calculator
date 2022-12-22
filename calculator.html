@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Torn Work Stat Training Calculator</title>
+    <!-- Include Bootstrap CSS file -->
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <style>
+	@media (prefers-color-scheme: dark) {
+    	--body-bg: #000;
+    	--body-color: #fff;
+	}
+    </style>
+  </head>
+  <body class="bg-dark text-white">
+    <!-- Use Bootstrap container class to wrap form -->
+    <div class="container">
+      <h1>Trains Calculator</h1>
+      <form onsubmit="calculate(); return false;">
+        <!-- Use Bootstrap form-group class for form elements -->
+        <div class="form-group">
+  			<h2>Current Stats</h2>
+  			<div class="row">
+   			 	<div class="col-4">
+      			  <!-- Use Bootstrap form-control class for input elements -->
+			      <label for="current-man">Current Man:</label>
+			      <input type="number" class="form-control" id="current-man" name="current-man">
+			      <label for="target-man">Target Man:</label>
+			      <input type="number" class="form-control" id="target-man" name="target-man">
+			      <label for="current-end">Current End:</label>
+			      <input type="number" class="form-control" id="current-end" name="current-end">
+   				</div>
+    			<div class="col-4">
+			      <label for="target-end">Target End:</label>
+			      <input type="number" class="form-control" id="target-end" name="target-end">
+			      <label for="current-int">Current Int:</label>
+			      <input type="number" class="form-control" id="current-int" name="current-int">
+			      <label for="target-int">Target Int:</label>
+			      <input type="number" class="form-control" id="target-int" name="target-int">
+    			</div>
+  			</div>
+		</div>
+
+        <h2>Daily Stat Gains</h2>
+        <div class="form-group col-2">
+          <label for="man-gain">Man:</label>
+          <input type="number" class="form-control" id="man-gain" name="man-gain">
+        </div>
+        <div class="form-group col-2">
+          <label for="end-gain">End:</label>
+          <input type="number" class="form-control" id="end-gain" name="end-gain">
+        </div>
+        <div class="form-group col-2">
+          <label for="int-gain">Int:</label>
+          <input type="number" class="form-control" id="int-gain" name="int-gain">
+        </div>
+        <h2>Trains per Day</h2>
+        <div class="form-group col-2">
+          <label for="trains-per-day">Trains per Day:</label>
+          <input type="number" class="form-control" id="trains-per-day" name="trains-per-day">
+      	<br>
+      	<input type="submit" class="btn border btn-lg text-white" value="Submit">
+      </div>
+	</form> 
+	<br/>
+    <h2>Output</h2>
+    <p id="total-trains">Total Trains: 0</p>
+    <table class="table text-white">
+      <tr>
+        <th></th>
+        <th>Primary Trains</th>
+        <th>Secondary Trains</th>
+        <th>Total Stats</th>
+      </tr>
+      <tr>
+        <th>Man</th>
+        <td id="man-primary"></td>
+        <td id="man-secondary"></td>
+        <td id="man-total"></td>
+      </tr>
+     <tr>
+		<th>End</th>
+		<td id="end-primary"></td>
+        <td id="end-secondary"></td>
+        <td id="end-total"></td>
+	 </tr>
+	 <tr>
+		<th>Int</th>
+		<td id="int-primary"></td>
+        <td id="int-secondary"></td>
+        <td id="int-total"></td>
+	 </tr>
+	</table>
+</body>
+
+<script>
+  function calculate() {
+    // Take values from the form
+    let man = Number(document.getElementById("current-man").value);
+    let end = Number(document.getElementById("current-end").value);
+    let intel = Number(document.getElementById("current-int").value);
+    let targetMan = Number(document.getElementById("target-man").value);
+    let targetEnd = Number(document.getElementById("target-end").value);
+    let targetInt = Number(document.getElementById("target-int").value);
+
+    // Check if current stats are already greater than or equal to target stats
+    if (man >= targetMan && end >= targetEnd && intel >= targetInt) {
+      return;
+    }
+
+    // Take growth values dependant on job
+    let manGrowth = Number(document.getElementById("man-gain").value);
+    let endGrowth = Number(document.getElementById("end-gain").value);
+    let intGrowth = Number(document.getElementById("int-gain").value);
+    let trainsPerDay = Number(document.getElementById("trains-per-day").value);
+
+    // Initialize variables to store the current values of Man, End, and Intel
+    let iterations = 0;
+    let currentMan = man;
+    let currentEnd = end;
+    let currentIntel = intel;
+    let manPrimary = 0;
+    let endPrimary = 0;
+    let intelPrimary = 0;
+    let manSecondary = 0;
+    let endSecondary = 0;
+    let intelSecondary = 0;
+    let days = 0;
+
+    // Keep looping until all three variables have reached their target values
+    while (currentMan < targetMan || currentEnd < targetEnd || currentIntel < targetInt) {
+      // Calculate the difference between the current value and the target value for each variable
+      let manDiff = targetMan - currentMan;
+      let endDiff = targetEnd - currentEnd;
+      let intelDiff = targetInt - currentIntel;
+
+      if(manDiff >= endDiff && manDiff >= intelDiff) {
+      	// Set Man as the primary input
+      	currentMan += 50;
+      	manPrimary++;
+
+      	// Determine which variable to set as the secondary input
+        if (endDiff >= intelDiff) {
+            currentEnd += 25;
+            endSecondary++;
+        } else {
+            currentIntel += 25;
+            intelSecondary++;
+        }
+      } else if(endDiff >= manDiff && endDiff >= intelDiff) {
+        // Set End as the primary input
+        currentEnd += 50;
+        endPrimary++;
+
+        // Determine which variable to set as the secondary input
+        if (manDiff >= intelDiff) {
+            currentEnd += 25;
+            endSecondary++;
+        } else {
+            currentIntel += 25;
+            intelSecondary++;
+        } 
+      }
+      else {
+		// Set Int as the primary input
+       	currentIntel += 50;
+       	intelPrimary++;
+       	// Determine which variable to set as the secondary input
+       	if (manDiff >= endDiff) {
+           currentMan += 25;
+           manSecondary++;
+       	} else {
+           currentEnd += 25;
+           endSecondary++;
+       	}
+     }
+
+     // Increase the days counter and reset the number of trains for the day
+     iterations++;
+     days++;
+     if(days == trainsPerDay) {
+     	currentMan += manGrowth;
+     	currentEnd += endGrowth;
+     	currentIntel += intGrowth;
+     	days = 0;
+     }
+   }
+
+   // Calculate the total number of primary and secondary trains
+   let totalManPrimary = manPrimary;
+   let totalEndPrimary = endPrimary;
+   let totalIntelPrimary = intelPrimary;
+   let totalManSecondary = manSecondary;
+   let totalEndSecondary = endSecondary;
+   let totalIntelSecondary = intelSecondary;
+   let totalTrains = manPrimary + endPrimary + intelPrimary;
+
+   // Print the results to the form
+   document.getElementById("man-primary").innerHTML = totalManPrimary;
+   document.getElementById("end-primary").innerHTML = totalEndPrimary;
+   document.getElementById("int-primary").innerHTML = totalIntelPrimary;
+   document.getElementById("man-secondary").innerHTML = totalManSecondary;
+   document.getElementById("end-secondary").innerHTML = totalEndSecondary;
+   document.getElementById("int-secondary").innerHTML = totalIntelSecondary;
+   document.getElementById("man-total").innerHTML = currentMan;
+   document.getElementById("end-total").innerHTML = currentEnd;
+   document.getElementById("int-total").innerHTML = currentIntel;
+   document.getElementById("total-trains").innerHTML = "Total Trains: " + totalTrains;
+ }
+</script>
