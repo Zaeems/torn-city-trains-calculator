@@ -10,11 +10,12 @@
   <!-- Use Bootstrap container class to wrap form -->
   <div class="container">
     <h1>Trains Calculator</h1>
+    <br/>
     <form onsubmit="calculate(); return false;">
       <!-- Use Bootstrap form-group class for form elements -->
       <div class="form-group">
         <h2>Current Stats</h2>
-        <div class="row">
+        <div class="row container-fluid">
           <div class="col-sm-6 col-md-4">
             <!-- Use Bootstrap form-control class for input elements -->
             <label for="current-man">Current Man:</label>
@@ -34,21 +35,25 @@
           </div>
         </div>
       </div>
+      <br/>
       <h2>Daily Stat Gains</h2>
-      <div class="form-group col-sm-4 col-md-2">
-        <label for="man-gain">Man:</label>
-        <input type="tel" class="form-control bg-dark text-white" id="man-gain" name="man-gain">
+      <div class="row container-fluid">
+        <div class="form-group col-sm-4 col-md-2">
+          <label for="man-gain">Man:</label>
+          <input type="tel" class="form-control bg-dark text-white" id="man-gain" name="man-gain">
+        </div>
+        <div class="form-group col-sm-4 col-md-2">
+          <label for="int-gain">Int:</label>
+          <input type="tel" class="form-control bg-dark text-white" id="int-gain" name="int-gain">
+        </div>
+        <div class="form-group col-sm-4 col-md-2">
+          <label for="end-gain">End:</label>
+          <input type="tel" class="form-control bg-dark text-white" id="end-gain" name="end-gain">
+        </div>
       </div>
-      <div class="form-group col-sm-4 col-md-2">
-        <label for="int-gain">Int:</label>
-        <input type="tel" class="form-control bg-dark text-white" id="int-gain" name="int-gain">
-      </div>
-      <div class="form-group col-sm-4 col-md-2">
-        <label for="end-gain">End:</label>
-        <input type="tel" class="form-control bg-dark text-white" id="end-gain" name="end-gain">
-      </div>
+      <br/>
       <h2>Trains per Day</h2>
-      <div class="row">
+      <div class="row container-fluid">
         <div class="form-group col-sm-4 col-md-2">
           <label for="trains-per-day">Trains per day:</label>
           <input type="tel" class="form-control bg-dark text-white" id="trains-per-day" name="trains-per-day">
@@ -56,11 +61,12 @@
         <div class="form-group col-sm-4 col-md-2">
           <label for="cost-per-train">Cost per train:</label>
           <input type="tel" class="form-control bg-dark text-white" id="cost-per-train" name="trains-per-day">
-          <br/>
         </div>
       </div>
+      <br/>
       <input type="submit" class="btn border btn-lg text-white" value="Submit">
     </form>
+    <br/>
     <h2>Output</h2>
     <p id="total-trains">Total Trains: 0 - Total Cost: $0 ($0 per train)</p>
     <table class="table text-white">
@@ -91,9 +97,11 @@
     </table>
   </body>
   <script>
-    new AutoNumeric('input', {decimalPlaces: 0}) ;
-  </script>
-  <script>
+    var inputElements = document.querySelectorAll('input');
+    inputElements.forEach(function(inputElement) {
+      new AutoNumeric(inputElement, {decimalPlaces: 0});
+    });
+
     function calculate() {
     // Take values from the form
     let man = Number(document.getElementById("current-man").value);
